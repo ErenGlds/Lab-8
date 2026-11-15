@@ -2,6 +2,12 @@ import express from "express";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const courses = [
+  { id: 1, title: "Web Programming", credits: 6 },
+  { id: 2, title: "Cloud Computing", credits: 5 },
+  { id: 3, title: "Advanced Encryption and Network Security", credits: 6 },
+  { id: 4, title: "Discrete Optimization and Network Flows", credits: 5 },
+];
 
 let requestsServed = 0;
 
@@ -28,6 +34,24 @@ app.get("/robots.txt", (req, res) => {
 
 app.get("/old-page", (req, res) => {
   res.redirect("/hello");
+});
+app.get("/api/courses", (req, res) => {
+  res.json(courses);
+});
+
+app.get("/api/status", (req, res) => {
+  res.json({
+    status: "ok",
+    nodeVersion: process.version,
+    uptimeSeconds: Math.floor(process.uptime()),
+  });
+});
+
+app.get("/api/headers", (req, res) => {
+  res.json({
+    userAgent: req.get("User-Agent"),
+    accept: req.get("Accept"),
+  });
 });
 
 app.listen(PORT, () => {
