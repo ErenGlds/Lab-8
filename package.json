@@ -1,0 +1,10 @@
+{
+  "name": "assignment8",
+  "version": "1.0.0",
+  "description": "Information server for a study programme",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}
