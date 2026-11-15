@@ -1,3 +1,4 @@
+import path from "node:path";
 import express from "express";
 
 const app = express();
@@ -23,6 +24,7 @@ function requestCounter(req, res, next) {
 
 app.use(requestLogger);
 app.use(requestCounter);
+app.use(express.static(path.join(import.meta.dirname, "public")));
 
 app.get("/hello", (req, res) => {
   res.send("Hello from Yakup's server");
