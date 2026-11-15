@@ -18,6 +18,18 @@ function requestCounter(req, res, next) {
 app.use(requestLogger);
 app.use(requestCounter);
 
+app.get("/hello", (req, res) => {
+  res.send("Hello from Yakup's server");
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain").send("User-agent: *\nDisallow: /api/admin\n");
+});
+
+app.get("/old-page", (req, res) => {
+  res.redirect("/hello");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
